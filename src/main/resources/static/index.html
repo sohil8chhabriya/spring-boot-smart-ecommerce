@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<p><b>POST: (<i>/api/products</i>)</b> <a href="">Add Product</a></p>
+
+<pre id="json">{
+    "name": "shorts",
+    "description": "description of the product",
+    "price": 23.54,
+    "pictureUrl": "http://www.google.com",
+    "category": "Apparel",
+    "subCategory": "Shorts",
+    "attribute": {
+        "color": "grey",
+        "size": "medium"
+    }
+}
+</pre>
+<p><b>GET: (<i>/api/products</i>)</b> <a href="/api/products">Get all Products</a></p>
+<p><b>GET: (<i>/api/products/{id}</i>)</b> <a href="/api/products/1">Get Product By Id</a></p>
+
+<p><b>GET: (<i>/api/products/category</i>)</b> <a href="">Get Products By Category</a></p>
+<pre id="json">
+"Apparel"
+</pre>
+or any of these category
+("Apparel | Electronics | Home | SportingGoods | MedicalHealth")
+
+<p><b>GET: (<i>/api/products/attribute</i>)</b> <a href="">Get Product By Attribute</a></p>
+<pre id="json">
+ "attribute": {
+     "color": "grey",
+     "size": "medium"
+ }
+</pre>
+
+<p><b>PUT: (<i>/api/products/</i>)</b> <a href="">Update Product</a></p>
+
+<pre id="json">{
+    "id":1,
+    "name": "shorts",
+    "description": "description of the product",
+    "price": 23.54,
+    "pictureUrl": "http://www.google.com",
+    "category": "Apparel",
+    "subCategory": "Shorts",
+    "attribute": {
+        "color": "grey",
+        "size": "medium"
+    }
+}
+</pre>
+
+<p><b>DELETE: (<i>/api/products/{id}</i>)</b> <a href="">Delete Product By Id</a></p>
+</body>
+</html>
