@@ -53,19 +53,12 @@ public class ProductDaoImpl implements Dao<Product>, ProductCatDao<Product, Inpu
   @Override
   public List<Product> getProductsByCategoryName(InputWrapper input) {
     Category category = categoryDao.getByName(input.getCategory().getName());
-    // List<Product> tempProducts = getAll();
     List<Product> products = new ArrayList<Product>();
 
     if (category != null) {
-      // productCategoryRepository.getProductCategoryById(category.getId()).forEach(products::add);
+      productCategoryRepository.findAllByCategory(category)
+          .forEach(p -> productRepository.findAllByProductCategory(p).forEach(products::add));
     }
-    // tempProducts.stream()
-    // .filter(p -> p.getCategory().getName().equals(input.getCategory().getName()))
-    // .forEach(products::add);
-
-    // if (category != null) {
-    // productRepository.getProductsByCategory(category.getId()).forEach(products::add);
-    // }
     return products;
   }
 

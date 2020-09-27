@@ -2,7 +2,9 @@ package com.smart.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import com.smart.model.Category;
 import com.smart.model.ProductCategory;
+import com.smart.model.SubCategory;
 
 @Repository
 public interface ProductCategoryRepository extends CrudRepository<ProductCategory, Long> {
@@ -11,7 +13,12 @@ public interface ProductCategoryRepository extends CrudRepository<ProductCategor
   //
   // Iterable<Product> getProductsByCategory(Category category);
 
-  // ProductCategory findByName(String name);
+  Iterable<ProductCategory> findAllByCategory(Category category);
+
+  Iterable<ProductCategory> findAllBySubCategory(SubCategory subCategory);
+
+  ProductCategory findBySubCategory(SubCategory subCategory);
+
 
   // ProductCategory getCategoryByName(String name);
 

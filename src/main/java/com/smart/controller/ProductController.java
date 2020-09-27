@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.smart.model.InputWrapper;
 import com.smart.model.Product;
-import com.smart.model.SubCategory;
-import com.smart.service.CategorySubCatService;
 import com.smart.service.ProductService;
 
 @RestController
@@ -25,9 +23,6 @@ public class ProductController {
 
   @Autowired
   private ProductService productService;
-
-  @Autowired
-  private CategorySubCatService categorySub;
 
   @PostMapping(value = {"", "/"})
   public Product addProduct(@RequestBody Product product) {
@@ -52,8 +47,6 @@ public class ProductController {
 
   @GetMapping(value = {"/category/"})
   public List<Product> getProductsByCategory(@RequestBody InputWrapper category) {
-    // List<Product> products = new ArrayList<Product>();
-    // productService.getAllProductsByCategory(category).forEach(products::add);
     return productService.getAllProductsByCategory(category);
   }
 
@@ -63,11 +56,6 @@ public class ProductController {
   // productService.getAllProductsByAttribute(attribute).forEach(products::add);
   // return products;
   // }
-
-  @GetMapping(value = {"/subcat"})
-  public List<SubCategory> getSubCategoryByCategory(@RequestBody InputWrapper input) {
-    return categorySub.getSubCategoryByCategory(input);
-  }
 
   @PutMapping(value = {"/{id}"})
   public Product updateProduct(@RequestBody Product product, @PathVariable("id") String id) {
