@@ -1,8 +1,7 @@
 package com.smart.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,19 +12,22 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.smart.model.Category;
+import com.smart.model.InputWrapper;
 import com.smart.model.Product;
+import com.smart.model.SubCategory;
+import com.smart.service.CategorySubCatService;
 import com.smart.service.ProductService;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping(headers = "Accept=application/json", produces = "application/json",
+    path = "/api/products")
 public class ProductController {
 
+  @Autowired
   private ProductService productService;
 
-  public ProductController(ProductService productService) {
-    this.productService = productService;
-  }
+  @Autowired
+  private CategorySubCatService categorySub;
 
   @PostMapping(value = {"", "/"})
   public Product addProduct(@RequestBody Product product) {
@@ -45,29 +47,31 @@ public class ProductController {
 
   @GetMapping(value = {"", "/"})
   public List<Product> getProducts() {
-    List<Product> products = new ArrayList<Product>();
-    productService.getAllProducts().forEach(products::add);
-    return products;
-  }
-
-  @GetMapping(value = {"/attribute/"})
-  public List<Product> getProductsByAttribute(@RequestBody Map<String, String> attribute) {
-    List<Product> products = new ArrayList<Product>();
-    productService.getAllProductsByAttribute(attribute).forEach(products::add);
-    return products;
+    return productService.getAllProducts();
   }
 
   @GetMapping(value = {"/category/"})
-  public List<Product> getProductsByCategory(@RequestBody Category category) {
-    List<Product> products = new ArrayList<Product>();
-    productService.getAllProductsByCategory(category).forEach(products::add);
-    return products;
+  public List<Product> getProductsByCategory(@RequestBody InputWrapper category) {
+    // List<Product> products = new ArrayList<Product>();
+    // productService.getAllProductsByCategory(category).forEach(products::add);
+    return productService.getAllProductsByCategory(category);
   }
 
+  // @GetMapping(value = {"/attribute/"})
+  // public List<Product> getProductsByAttribute(@RequestBody Map<String, String> attribute) {
+  // List<Product> products = new ArrayList<Product>();
+  // productService.getAllProductsByAttribute(attribute).forEach(products::add);
+  // return products;
+  // }
 
-  @PutMapping(value = {"", "/"})
-  public Product updateProduct(@RequestBody Product product) {
-    return productService.updateProduct(product);
+  @GetMapping(value = {"/subcat"})
+  public List<SubCategory> getSubCategoryByCategory(@RequestBody InputWrapper input) {
+    return categorySub.getSubCategoryByCategory(input);
+  }
+
+  @PutMapping(value = {"/{id}"})
+  public Product updateProduct(@RequestBody Product product, @PathVariable("id") String id) {
+    return productService.updateProduct(product, new Long(id));
   }
 
 }

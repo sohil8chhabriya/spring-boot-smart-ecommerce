@@ -1,12 +1,15 @@
 package com.smart.repository;
 
-import java.util.Map;
 import org.springframework.data.repository.CrudRepository;
-import com.smart.model.Category;
+import org.springframework.stereotype.Repository;
 import com.smart.model.Product;
 
+@Repository
 public interface ProductRepository extends CrudRepository<Product, Long> {
-  Iterable<Product> getProductsByAttribute(Map<String, String> attribute);
+  // Iterable<Product> getProductsByAttribute(Map<String, String> attribute);
 
-  Iterable<Product> getProductsByCategory(Category category);
+  // @Query("select p from Person p join fetch p.organisation o")
+  // List<Person> findAll();
+  // @Query("SELECT p FROM Product p JOIN p.productCategory.id pc WHERE pc = :id")
+  // Iterable<Product> getProductsByCategory(@Param("id") long id);
 }

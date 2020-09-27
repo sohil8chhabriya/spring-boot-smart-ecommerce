@@ -1,15 +1,15 @@
 package com.smart.model;
 
+import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -22,7 +22,7 @@ public class Product {
 
   @NotNull(message = "Product name is required.")
   @Basic(optional = false)
-  @Size(max = 100, message = "product name should be less than 100")
+  @Size(max = 100, message = "Product name should be less than 100")
   private String name;
 
   @NotNull(message = "Product description is required.")
@@ -34,27 +34,19 @@ public class Product {
 
   private String pictureUrl;
 
-  @Enumerated(EnumType.STRING)
-  @Column(name = "category_type")
-  private Category category;
+  @ManyToOne
+  @JoinColumn(name = "product_category_id", nullable = false)
+  private ProductCategory productCategory;
 
-  @Enumerated(EnumType.STRING)
-  @Column(name = "sub_category_type")
-  private SubCategory subCategory;
-
-  @ElementCollection(targetClass = String.class)
-  private Map<String, String> attribute;
+  @ElementCollection()
+  private Map<String, String> attribute = new HashMap<String, String>();
 
   public Map<String, String> getAttribute() {
     return attribute;
   }
 
-  public Category getCategory() {
-    return category;
-  }
-
   public String getDescription() {
-    return name;
+    return description;
   }
 
   public Long getId() {
@@ -73,16 +65,12 @@ public class Product {
     return price;
   }
 
-  public SubCategory getSubCategory() {
-    return subCategory;
+  public ProductCategory getProductCategory() {
+    return productCategory;
   }
 
   public void setAttribute(Map<String, String> attribute) {
-    this.attribute = attribute;
-  }
-
-  public void setCategory(Category category) {
-    this.category = category;
+    attribute.forEach((k, v) -> this.attribute.put(k, v));
   }
 
   public void setDescription(String description) {
@@ -105,7 +93,7 @@ public class Product {
     this.price = price;
   }
 
-  public void setSubCategory(SubCategory subCategory) {
-    this.subCategory = subCategory;
+  public void setProductCategory(ProductCategory productCategory) {
+    this.productCategory = productCategory;
   }
 }

@@ -1,5 +1,78 @@
 package com.smart.model;
 
-public enum SubCategory {
-  Mobile, Laptop, Tablet, Shorts, Tshirt, Table, Chair, Dumbles, Ring, YogaMat, HealthDrink, Bandaid,
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class SubCategory {
+  // Mobile, Laptop, Tablet, Shorts, Tshirt, Table, Chair, Dumbles, Ring, YogaMat, HealthDrink,
+  // Bandaid,
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @Column(unique = true)
+  private String name;
+
+  @OneToMany(mappedBy = "subCategory", fetch = FetchType.LAZY, orphanRemoval = true,
+      cascade = CascadeType.ALL)
+  private Set<ProductCategory> productCategory = new HashSet<>();
+
+  @ElementCollection()
+  private Set<String> attribute = new HashSet<String>();
+
+  public Set<String> getAttribute() {
+    return attribute;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  // public ProductCategory addProductCategory(ProductCategory productCategory) {
+  // this.productCategories.add(productCategory);
+  // productCategory.setSubCategory(this);
+  // return productCategory;
+  // }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setAttribute(Set<String> attribute) {
+    this.attribute.addAll(attribute);
+  }
+
+  // public void removeProductCategory() {
+  // Iterator<ProductCategory> iterator = this.productCategories.iterator();
+  //
+  // while (iterator.hasNext()) {
+  // ProductCategory productCategory = iterator.next();
+  //
+  // productCategory.setSubCategory(null);
+  // iterator.remove();
+  // }
+  // }
+  //
+  // public void removeProductCategory(ProductCategory productCategory) {
+  // productCategory.setSubCategory(null);
+  // this.productCategories.remove(productCategory);
+  // }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 }

@@ -1,57 +1,54 @@
 package com.smart.service;
 
-import java.util.Map;
+import java.util.List;
 import javax.validation.constraints.Min;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.smart.exception.ResourceNotFoundException;
-import com.smart.model.Category;
+import com.smart.dao.ProductDaoImpl;
+import com.smart.model.InputWrapper;
 import com.smart.model.Product;
-import com.smart.repository.ProductRepository;
 
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {
 
-  private ProductRepository productRepository;
-
-  public ProductServiceImpl(ProductRepository productRepository) {
-    this.productRepository = productRepository;
-  }
+  @Autowired
+  private ProductDaoImpl productDao;
 
   @Override
   public Product addProduct(Product product) {
-    return productRepository.save(product);
+    return productDao.save(product);
   }
+
 
   @Override
   public void deleteProduct(@Min(value = 1l, message = "Invalid product ID.") Long id) {
-    productRepository.deleteById(id);
+    productDao.delete(id);
   }
 
   @Override
-  public Iterable<Product> getAllProducts() {
-    return productRepository.findAll();
+  public List<Product> getAllProducts() {
+    return productDao.getAll();
   }
 
-  @Override
-  public Iterable<Product> getAllProductsByAttribute(Map<String, String> attribute) {
-    return productRepository.getProductsByAttribute(attribute);
-  }
+  // @Override
+  // public Iterable<Product> getAllProductsByAttribute(Map<String, String> attribute) {
+  // return productRepository.getProductsByAttribute(attribute);
+  // }
 
   @Override
-  public Iterable<Product> getAllProductsByCategory(Category category) {
-    return productRepository.getProductsByCategory(category);
+  public List<Product> getAllProductsByCategory(InputWrapper input) {
+    return productDao.getProductsByCategoryName(input);
   }
 
   @Override
   public Product getProduct(Long id) {
-    return productRepository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+    return productDao.get(id);
   }
 
   @Override
-  public Product updateProduct(Product product) {
-    return productRepository.save(product);
+  public Product updateProduct(Product product, long l) {
+    return productDao.update(product, l);
   }
 }

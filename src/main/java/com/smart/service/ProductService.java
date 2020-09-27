@@ -1,11 +1,11 @@
 package com.smart.service;
 
-import java.util.Map;
+import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
-import com.smart.model.Category;
+import com.smart.model.InputWrapper;
 import com.smart.model.Product;
 
 @Validated
@@ -16,14 +16,15 @@ public interface ProductService {
   void deleteProduct(@Min(value = 1L, message = "Invalid product ID.") Long id);
 
   @NotNull
-  Iterable<Product> getAllProducts();
+  List<Product> getAllProducts();
 
-  Iterable<Product> getAllProductsByAttribute(Map<String, String> attribute);
+  // Iterable<Product> getAllProductsByAttribute(Map<String, String> attribute);
 
-  Iterable<Product> getAllProductsByCategory(Category category);
+  List<Product> getAllProductsByCategory(InputWrapper category);
 
 
   Product getProduct(@Min(value = 1L, message = "Invalid product ID.") Long id);
 
-  Product updateProduct(@NotNull(message = "The order cannot be null.") @Valid Product product);
+  Product updateProduct(@NotNull(message = "The order cannot be null.") @Valid Product product,
+      long l);
 }
