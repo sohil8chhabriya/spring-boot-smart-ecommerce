@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.smart.model.InputWrapper;
 import com.smart.model.Product;
+import com.smart.model.input.InputWrapper;
 import com.smart.service.ProductService;
 
 @RestController
@@ -25,8 +25,8 @@ public class ProductController {
   private ProductService productService;
 
   @PostMapping(value = {"", "/"})
-  public Product addProduct(@RequestBody Product product) {
-    return productService.addProduct(product);
+  public Product addProduct(@RequestBody InputWrapper input) {
+    return productService.addProduct(input);
   }
 
   @DeleteMapping(value = "/{id}")
@@ -54,5 +54,12 @@ public class ProductController {
   public Product updateProduct(@RequestBody Product product, @PathVariable("id") String id) {
     return productService.updateProduct(product, new Long(id));
   }
+
+  // @GetMapping(value = {"/attribute/"})
+  // public List<Product> getProductsByAttribute(@RequestBody Map<String, String> attribute) {
+  // List<Product> products = new ArrayList<Product>();
+  // productService.getAllProductsByAttribute(attribute).forEach(products::add);
+  // return products;
+  // }
 
 }

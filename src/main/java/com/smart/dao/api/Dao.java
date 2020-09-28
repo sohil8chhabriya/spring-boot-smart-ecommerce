@@ -1,8 +1,8 @@
-package com.smart.dao;
+package com.smart.dao.api;
 
 import java.util.Collection;
 
-public interface Dao<P> {
+public interface Dao<P, I> {
 
   void delete(long id);
 
@@ -11,6 +11,8 @@ public interface Dao<P> {
   Collection<P> getAll();
 
   P save(P p);
+
+  P saveWrapper(I i);
 
   P update(P p, long l);
 }

@@ -1,16 +1,18 @@
-package com.smart.dao;
+package com.smart.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import com.smart.dao.api.Dao;
 import com.smart.exception.ResourceNotFoundException;
 import com.smart.model.Category;
+import com.smart.model.input.InputWrapper;
 import com.smart.repository.CategoryRepository;
 
 @Component
-public class CategoryDaoImpl implements Dao<Category> {
+public class CategoryDaoImpl implements Dao<Category, InputWrapper> {
 
   @Autowired
   private CategoryRepository categoryRepository;
@@ -42,6 +44,12 @@ public class CategoryDaoImpl implements Dao<Category> {
   @Override
   public Category save(Category category) {
     return categoryRepository.save(category);
+  }
+
+  @Override
+  public Category saveWrapper(InputWrapper i) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
   @Override

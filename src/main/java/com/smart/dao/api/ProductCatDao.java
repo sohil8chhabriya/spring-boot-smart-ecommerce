@@ -1,4 +1,4 @@
-package com.smart.dao;
+package com.smart.dao.api;
 
 import java.util.List;
 

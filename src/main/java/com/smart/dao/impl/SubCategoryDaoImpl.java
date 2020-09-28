@@ -1,16 +1,18 @@
-package com.smart.dao;
+package com.smart.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import com.smart.dao.api.Dao;
 import com.smart.exception.ResourceNotFoundException;
 import com.smart.model.SubCategory;
+import com.smart.model.input.InputWrapper;
 import com.smart.repository.SubCategoryRepository;
 
 @Component
-public class SubCategoryDaoImpl implements Dao<SubCategory> {
+public class SubCategoryDaoImpl implements Dao<SubCategory, InputWrapper> {
 
   @Autowired
   private SubCategoryRepository subCategoryRepository;
@@ -33,7 +35,6 @@ public class SubCategoryDaoImpl implements Dao<SubCategory> {
     return subCategory;
   }
 
-
   public SubCategory getByName(String name) {
     return subCategoryRepository.findByName(name);
   }
@@ -41,6 +42,11 @@ public class SubCategoryDaoImpl implements Dao<SubCategory> {
   @Override
   public SubCategory save(SubCategory subCategory) {
     return subCategoryRepository.save(subCategory);
+  }
+
+  @Override
+  public SubCategory saveWrapper(InputWrapper i) {
+    return save(i.getSubCategory());
   }
 
   @Override

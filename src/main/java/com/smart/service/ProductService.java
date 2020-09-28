@@ -5,13 +5,13 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
-import com.smart.model.InputWrapper;
 import com.smart.model.Product;
+import com.smart.model.input.InputWrapper;
 
 @Validated
 public interface ProductService {
 
-  Product addProduct(@NotNull(message = "The order cannot be null.") @Valid Product product);
+  Product addProduct(@NotNull(message = "The order cannot be null.") @Valid InputWrapper input);
 
   void deleteProduct(@Min(value = 1L, message = "Invalid product ID.") Long id);
 

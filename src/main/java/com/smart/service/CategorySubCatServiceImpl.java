@@ -5,11 +5,11 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.smart.dao.CategorySubCatDao;
-import com.smart.dao.CategorySubCatDaoImpl;
+import com.smart.dao.api.CategorySubCatDao;
+import com.smart.dao.impl.CategorySubCatDaoImpl;
 import com.smart.model.Category;
-import com.smart.model.InputWrapper;
 import com.smart.model.SubCategory;
+import com.smart.model.input.InputWrapper;
 
 @Service
 @Transactional

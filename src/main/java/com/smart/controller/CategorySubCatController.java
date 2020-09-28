@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.smart.dao.CategorySubCatDaoImpl;
+import com.smart.dao.impl.CategorySubCatDaoImpl;
 import com.smart.model.Category;
-import com.smart.model.InputWrapper;
 import com.smart.model.SubCategory;
+import com.smart.model.input.InputWrapper;
 
 @RestController
 @RequestMapping(headers = "Accept=application/json", produces = "application/json",
@@ -34,13 +34,5 @@ public class CategorySubCatController {
   public List<SubCategory> getSubCategoryByCategory(@RequestBody InputWrapper input) {
     return categorySub.getSubCategoryByCategory(input);
   }
-
-
-  // @GetMapping(value = {"/attribute/"})
-  // public List<Product> getProductsByAttribute(@RequestBody Map<String, String> attribute) {
-  // List<Product> products = new ArrayList<Product>();
-  // productService.getAllProductsByAttribute(attribute).forEach(products::add);
-  // return products;
-  // }
 
 }

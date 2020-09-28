@@ -9,8 +9,6 @@ import com.smart.model.SubCategory;
 @Repository
 public interface ProductCategoryRepository extends CrudRepository<ProductCategory, Long> {
 
-  // Iterable<Product> getProductsByAttribute(Map<String, String> attribute);
-
   Iterable<ProductCategory> findAllByCategory(Category category);
 
   Iterable<ProductCategory> findAllBySubCategory(SubCategory subCategory);

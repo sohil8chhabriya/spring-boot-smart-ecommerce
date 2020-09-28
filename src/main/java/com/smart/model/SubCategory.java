@@ -46,6 +46,10 @@ public class SubCategory {
     this.attribute.addAll(attribute);
   }
 
+  public void setAttribute(String attribute) {
+    this.attribute.add(attribute);
+  }
+
   public void setId(Long id) {
     this.id = id;
   }

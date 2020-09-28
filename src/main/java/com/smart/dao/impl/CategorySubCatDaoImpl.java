@@ -1,13 +1,14 @@
-package com.smart.dao;
+package com.smart.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import com.smart.dao.api.CategorySubCatDao;
 import com.smart.model.Category;
-import com.smart.model.InputWrapper;
 import com.smart.model.SubCategory;
+import com.smart.model.input.InputWrapper;
 import com.smart.repository.CategoryRepository;
 import com.smart.repository.ProductCategoryRepository;
 import com.smart.repository.SubCategoryRepository;

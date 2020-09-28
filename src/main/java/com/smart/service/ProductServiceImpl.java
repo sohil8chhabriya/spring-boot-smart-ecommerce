@@ -5,9 +5,9 @@ import javax.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.smart.dao.ProductDaoImpl;
-import com.smart.model.InputWrapper;
+import com.smart.dao.impl.ProductDaoImpl;
 import com.smart.model.Product;
+import com.smart.model.input.InputWrapper;
 
 @Service
 @Transactional
@@ -17,10 +17,9 @@ public class ProductServiceImpl implements ProductService {
   private ProductDaoImpl productDao;
 
   @Override
-  public Product addProduct(Product product) {
-    return productDao.save(product);
+  public Product addProduct(InputWrapper input) {
+    return productDao.saveWrapper(input);
   }
-
 
   @Override
   public void deleteProduct(@Min(value = 1l, message = "Invalid product ID.") Long id) {
