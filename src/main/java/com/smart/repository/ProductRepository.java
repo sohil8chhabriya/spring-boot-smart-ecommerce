@@ -9,10 +9,5 @@ import com.smart.model.ProductCategory;
 public interface ProductRepository extends CrudRepository<Product, Long> {
   // Iterable<Product> getProductsByAttribute(Map<String, String> attribute);
 
-  // @Query("select p from Person p join fetch p.organisation o")
-  // List<Person> findAll();
-  // @Query("SELECT p FROM Product p JOIN p.productCategory.id pc WHERE pc = :id")
-  // Iterable<Product> getProductsByCategory(@Param("id") long id);
-
   Iterable<Product> findAllByProductCategory(ProductCategory productCategory);
 }

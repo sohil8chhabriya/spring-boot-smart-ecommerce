@@ -26,9 +26,6 @@ public class ProductDaoImpl implements Dao<Product>, ProductCatDao<Product, Inpu
   @Autowired
   private SubCategoryRepository subCategoryRepository;
 
-  // @Autowired
-  // private CategoryRepository categoryRepository;
-
   @Autowired
   private CategoryDaoImpl categoryDao;
 

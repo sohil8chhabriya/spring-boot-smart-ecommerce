@@ -50,13 +50,6 @@ public class ProductController {
     return productService.getAllProductsByCategory(category);
   }
 
-  // @GetMapping(value = {"/attribute/"})
-  // public List<Product> getProductsByAttribute(@RequestBody Map<String, String> attribute) {
-  // List<Product> products = new ArrayList<Product>();
-  // productService.getAllProductsByAttribute(attribute).forEach(products::add);
-  // return products;
-  // }
-
   @PutMapping(value = {"/{id}"})
   public Product updateProduct(@RequestBody Product product, @PathVariable("id") String id) {
     return productService.updateProduct(product, new Long(id));

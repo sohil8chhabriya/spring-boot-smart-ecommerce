@@ -38,12 +38,6 @@ public class SubCategory {
     return id;
   }
 
-  // public ProductCategory addProductCategory(ProductCategory productCategory) {
-  // this.productCategories.add(productCategory);
-  // productCategory.setSubCategory(this);
-  // return productCategory;
-  // }
-
   public String getName() {
     return name;
   }
@@ -51,22 +45,6 @@ public class SubCategory {
   public void setAttribute(Set<String> attribute) {
     this.attribute.addAll(attribute);
   }
-
-  // public void removeProductCategory() {
-  // Iterator<ProductCategory> iterator = this.productCategories.iterator();
-  //
-  // while (iterator.hasNext()) {
-  // ProductCategory productCategory = iterator.next();
-  //
-  // productCategory.setSubCategory(null);
-  // iterator.remove();
-  // }
-  // }
-  //
-  // public void removeProductCategory(ProductCategory productCategory) {
-  // productCategory.setSubCategory(null);
-  // this.productCategories.remove(productCategory);
-  // }
 
   public void setId(Long id) {
     this.id = id;

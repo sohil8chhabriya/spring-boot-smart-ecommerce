@@ -35,4 +35,12 @@ public class CategorySubCatController {
     return categorySub.getSubCategoryByCategory(input);
   }
 
+
+  // @GetMapping(value = {"/attribute/"})
+  // public List<Product> getProductsByAttribute(@RequestBody Map<String, String> attribute) {
+  // List<Product> products = new ArrayList<Product>();
+  // productService.getAllProductsByAttribute(attribute).forEach(products::add);
+  // return products;
+  // }
+
 }

@@ -18,7 +18,6 @@ public class SubCategoryDaoImpl implements Dao<SubCategory> {
   @Override
   public void delete(long id) {
     subCategoryRepository.deleteById(id);
-
   }
 
   @Override
