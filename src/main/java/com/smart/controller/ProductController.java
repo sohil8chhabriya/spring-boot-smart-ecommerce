@@ -51,15 +51,8 @@ public class ProductController {
   }
 
   @PutMapping(value = {"/{id}"})
-  public Product updateProduct(@RequestBody Product product, @PathVariable("id") String id) {
-    return productService.updateProduct(product, new Long(id));
+  public Product updateProduct(@RequestBody InputWrapper input, @PathVariable("id") String id) {
+    return productService.updateProduct(input.getProduct(), new Long(id));
   }
-
-  // @GetMapping(value = {"/attribute/"})
-  // public List<Product> getProductsByAttribute(@RequestBody Map<String, String> attribute) {
-  // List<Product> products = new ArrayList<Product>();
-  // productService.getAllProductsByAttribute(attribute).forEach(products::add);
-  // return products;
-  // }
 
 }

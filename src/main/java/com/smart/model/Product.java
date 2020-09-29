@@ -3,8 +3,10 @@ package com.smart.model;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,11 +36,11 @@ public class Product {
 
   private String pictureUrl;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinColumn(name = "product_category_id", nullable = false)
   private ProductCategory productCategory;
 
-  @ElementCollection()
+  @ElementCollection(fetch = FetchType.EAGER)
   private Map<String, String> attribute = new HashMap<String, String>();
 
   public Map<String, String> getAttribute() {

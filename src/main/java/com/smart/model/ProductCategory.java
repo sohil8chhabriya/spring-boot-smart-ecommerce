@@ -20,17 +20,21 @@ public class ProductCategory {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinColumn(name = "category_id", nullable = false)
   private Category category;
 
-  @OneToMany(mappedBy = "productCategory", fetch = FetchType.LAZY, orphanRemoval = true,
+  @OneToMany(mappedBy = "productCategory", fetch = FetchType.EAGER, orphanRemoval = true,
       cascade = CascadeType.ALL)
   private Set<Product> products = new HashSet<>();
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinColumn(name = "sub_category_id", nullable = false)
   private SubCategory subCategory;
+
+  public ProductCategory() {
+    super();
+  }
 
   public Product addProduct(Product product) {
     this.products.add(product);

@@ -2,6 +2,7 @@ package com.smart.dao.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -42,12 +43,15 @@ public class ProductDaoImpl
       subCategory.setAttribute(productAttributesKey);
     } else if (productAttributesKey != null && productAttributesKey.size() > 0) {
       // Don't Allow to add disAllowed Attributes unless forceAddAttribute is true
-      productAttributesKey.removeAll(subCategory.getAttribute());
-      throw new ResourceNotFoundException(
-          "Attributes not Allowed " + productAttributesKey.toString() + ". Allowed Attributes: "
-              + subCategory.getAttribute().toString() + ". To add new attribute to the subCategory "
-              + subCategory.getName() + " use forceAddAttribute=true");
-
+      Set<String> productAttr_temp = new HashSet<String>();
+      productAttr_temp.addAll(productAttributesKey);
+      productAttr_temp.removeAll(subCategory.getAttribute());
+      if (productAttr_temp.size() > 0) {
+        throw new ResourceNotFoundException("Attributes not Allowed " + productAttr_temp.toString()
+            + ". Allowed Attributes: " + subCategory.getAttribute().toString()
+            + ". To add new attribute to the subCategory " + subCategory.getName()
+            + " use forceAddAttribute=true");
+      }
     } else {
       throw new ResourceNotFoundException("Attributes not found. Required Attributes: ("
           + subCategory.getAttribute().toString() + ") To add new use forceAddAttribute=true");

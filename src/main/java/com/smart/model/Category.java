@@ -23,9 +23,13 @@ public class Category {
   @Column(unique = true)
   private String name;
 
-  @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, orphanRemoval = true,
+  @OneToMany(mappedBy = "category", fetch = FetchType.EAGER, orphanRemoval = true,
       cascade = CascadeType.ALL)
   private Set<ProductCategory> productCategory = new HashSet<>();
+
+  public Category() {
+    super();
+  }
 
   public Long getId() {
     return id;

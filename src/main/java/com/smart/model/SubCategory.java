@@ -23,12 +23,16 @@ public class SubCategory {
   @Column(unique = true)
   private String name;
 
-  @OneToMany(mappedBy = "subCategory", fetch = FetchType.LAZY, orphanRemoval = true,
+  @OneToMany(mappedBy = "subCategory", fetch = FetchType.EAGER, orphanRemoval = true,
       cascade = CascadeType.ALL)
   private Set<ProductCategory> productCategory = new HashSet<>();
 
-  @ElementCollection()
+  @ElementCollection(fetch = FetchType.EAGER)
   private Set<String> attribute = new HashSet<String>();
+
+  public SubCategory() {
+    super();
+  }
 
   public Set<String> getAttribute() {
     return attribute;
