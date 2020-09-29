@@ -20,7 +20,7 @@ public class ProductCategory {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "category_id", nullable = false)
   private Category category;
 
@@ -28,7 +28,7 @@ public class ProductCategory {
       cascade = CascadeType.ALL)
   private Set<Product> products = new HashSet<>();
 
-  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "sub_category_id", nullable = false)
   private SubCategory subCategory;
 

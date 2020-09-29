@@ -20,10 +20,10 @@ public class SubCategory {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(unique = true)
+  @Column(unique = true, updatable = false)
   private String name;
 
-  @OneToMany(mappedBy = "subCategory", fetch = FetchType.EAGER, orphanRemoval = true,
+  @OneToMany(mappedBy = "subCategory", fetch = FetchType.LAZY, orphanRemoval = true,
       cascade = CascadeType.ALL)
   private Set<ProductCategory> productCategory = new HashSet<>();
 
