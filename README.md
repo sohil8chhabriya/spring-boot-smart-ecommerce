@@ -1,6 +1,5 @@
 # Read Me First
 Developed by Sohil Chhabriya.
-Phone Number: 8983376707.
 Email Id: sohil8chhabriya@gmail.com
 
 # Getting Started
